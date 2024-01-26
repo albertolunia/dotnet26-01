@@ -1,7 +1,7 @@
 using TechMed.Infrastructure.Persistence.Interfaces;
 
 namespace TechMed.Infrastructure.Persistence;
-public class TechMedContext : ITechMedContext, IDatabaseFake
+public class TechMedContext : ITechMedContext
 {
    public IMedicoCollection MedicosCollection { get; } = new MedicosDB();
    public IPacienteCollection PacientesCollection { get; } = new PacientesDB();
