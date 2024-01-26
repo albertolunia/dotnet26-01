@@ -1,7 +1,7 @@
 using TechMed.Application.InputModels;
 using TechMed.Application.Services.Interfaces;
 using TechMed.Application.ViewModels;
-using TechMed.Core.Exceptions;
+using TechMed.Core.Entities;
 using TechMed.Infrastructure.Persistence.Interfaces;
 
 namespace TechMed.Application.Services;
@@ -42,5 +42,17 @@ public class AtendimentoService : BaseService, IAtendimentoService
    public List<AtendimentoViewModel> GetByPacienteId(int pacienteId)
    {
       throw new NotImplementedException();
+   }
+
+   public int CreateExame(NewExameInputModel exame)
+   {
+      var atendimento = _context.AtendimentosCollection.GetById(exame.AtendimentoId);
+
+      return _context.ExamesCollection.Create(new Exame
+      {
+         Nome = exame.Nome,
+         AtendimentoId = atendimento.AtendimentoId,
+         Atendimento = atendimento
+      });
    }
 }

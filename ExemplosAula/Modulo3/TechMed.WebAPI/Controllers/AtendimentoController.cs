@@ -29,5 +29,12 @@ public class AtendimentoController : ControllerBase
  
    }
 
+   [HttpPost("atendimento/exame")]
+   public IActionResult PostExame([FromBody] NewExameInputModel exame)
+   {
+      _atendimentoService.CreateExame(exame);
+      return CreatedAtAction(nameof(Get), exame);
+   }
+
 
 }
